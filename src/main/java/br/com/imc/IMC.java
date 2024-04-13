@@ -15,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EntityScan(basePackages = { "br.com.imc.model" })
 @ComponentScan(basePackages = { "br.*" })
 @EnableJpaRepositories(basePackages = { "br.com.imc.repository" })
-
 public class IMC {
 
 	public static void main(String[] args) {
