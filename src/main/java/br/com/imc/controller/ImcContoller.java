@@ -42,15 +42,18 @@ public class ImcContoller {
 	}
 	@ResponseBody
 	@DeleteMapping(value = "/delete")
-	ResponseEntity<String>delete(@RequestParam Long iduser){
-		
-		usuarioRepository.findById(iduser);
-		
-		return new ResponseEntity<String>("User deletado com sucesso", HttpStatus.OK);
-		
-		
-		
+	public ResponseEntity<String> delete(@RequestParam Long iduser) {
+	    // Verifica se o usuário existe antes de excluir
+	    if (!usuarioRepository.existsById(iduser)) {
+	        return new ResponseEntity<>("Usuário não encontrado", HttpStatus.NOT_FOUND);
+	    }
+	    
+	    // Exclui o usuário pelo ID
+	    usuarioRepository.deleteById(iduser);
+	    
+	    return new ResponseEntity<>("Usuário deletado com sucesso", HttpStatus.OK);
 	}
+
 	
 	
 	@GetMapping(value = "/buscarPorNome") /* mapeia a url */
