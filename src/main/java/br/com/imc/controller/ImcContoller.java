@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.imc.model.Usuario;
 import br.com.imc.repository.UsuarioRepository;
@@ -20,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Controller
+@RestController
 public class ImcContoller {
 	
 	@Autowired
@@ -103,7 +104,7 @@ public class ImcContoller {
 			
 	})
 	@ApiOperation(value = "Busca usuário por ID")
-	@GetMapping(value = "/buscaruserid") /* mapeia a url */
+	@GetMapping(value = "/buscaruserid",produces = "application/json") /* mapeia a url */
 	@ResponseBody /* Descricao da resposta */
 	public ResponseEntity<Usuario> buscaruserid(@RequestParam(name = "iduser") Long iduser) { /* Recebe os dados para consultar */
 
