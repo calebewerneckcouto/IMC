@@ -16,13 +16,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.imc.model.Usuario;
 import br.com.imc.repository.UsuarioRepository;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Controller
 public class ImcContoller {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+	@ApiOperation(value = "Lista todos os usuários")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200,message = "Retorno com Sucesso!!!"),
+			@ApiResponse(code = 403,message = "Não Autorizado!!!"),
+			@ApiResponse(code = 500,message = "Erro interno no servidor"),
+			@ApiResponse(code = 401,message = "Acesso não Autorizado!!!")
+			
+	})
 	@GetMapping(value = "/listatodos")
 	ResponseEntity<List<Usuario>>Todos(){
 		
@@ -30,8 +40,14 @@ public class ImcContoller {
 		
 		return new ResponseEntity<List<Usuario>>(lista,HttpStatus.OK);
 	}
-	
-	
+	@ApiResponses(value = {
+			@ApiResponse(code = 200,message = "Retorno com Sucesso!!!"),
+			@ApiResponse(code = 403,message = "Não Autorizado!!!"),
+			@ApiResponse(code = 500,message = "Erro interno no servidor"),
+			@ApiResponse(code = 401,message = "Acesso não Autorizado!!!")
+			
+	})
+	@ApiOperation(value = "Salva  o usuário")
 	@ResponseBody
 	@PostMapping(value = "/salvar")	
 	ResponseEntity <Usuario>salvar(@RequestBody Usuario usuario){
@@ -40,6 +56,14 @@ public class ImcContoller {
 		return new ResponseEntity<Usuario>(user, HttpStatus.OK);
 		
 	}
+	@ApiResponses(value = {
+			@ApiResponse(code = 200,message = "Retorno com Sucesso!!!"),
+			@ApiResponse(code = 403,message = "Não Autorizado!!!"),
+			@ApiResponse(code = 500,message = "Erro interno no servidor"),
+			@ApiResponse(code = 401,message = "Acesso não Autorizado!!!")
+			
+	})
+	@ApiOperation(value = "Deleta o usuário")
 	@ResponseBody
 	@DeleteMapping(value = "/delete")
 	public ResponseEntity<String> delete(@RequestParam Long iduser) {
@@ -54,8 +78,14 @@ public class ImcContoller {
 	    return new ResponseEntity<>("Usuário deletado com sucesso", HttpStatus.OK);
 	}
 
-	
-	
+	@ApiResponses(value = {
+			@ApiResponse(code = 200,message = "Retorno com Sucesso!!!"),
+			@ApiResponse(code = 403,message = "Não Autorizado!!!"),
+			@ApiResponse(code = 500,message = "Erro interno no servidor"),
+			@ApiResponse(code = 401,message = "Acesso não Autorizado!!!")
+			
+	})
+	@ApiOperation(value = "Bucar usuário por nome")
 	@GetMapping(value = "/buscarPorNome") /* mapeia a url */
 	@ResponseBody /* Descricao da resposta */
 	public ResponseEntity<List<Usuario>> buscarPorNome(@RequestParam(name = "name") String name) { /* Recebe os dados para consultar */
@@ -65,8 +95,14 @@ public class ImcContoller {
 		return new ResponseEntity<List<Usuario>>(usuario, HttpStatus.OK);
 
 	}
-	
-	
+	@ApiResponses(value = {
+			@ApiResponse(code = 200,message = "Retorno com Sucesso!!!"),
+			@ApiResponse(code = 403,message = "Não Autorizado!!!"),
+			@ApiResponse(code = 500,message = "Erro interno no servidor"),
+			@ApiResponse(code = 401,message = "Acesso não Autorizado!!!")
+			
+	})
+	@ApiOperation(value = "Busca usuário por ID")
 	@GetMapping(value = "/buscaruserid") /* mapeia a url */
 	@ResponseBody /* Descricao da resposta */
 	public ResponseEntity<Usuario> buscaruserid(@RequestParam(name = "iduser") Long iduser) { /* Recebe os dados para consultar */
@@ -77,8 +113,14 @@ public class ImcContoller {
 
 	}
 	
-	
-	
+	@ApiResponses(value = {
+			@ApiResponse(code = 200,message = "Retorno com Sucesso!!!"),
+			@ApiResponse(code = 403,message = "Não Autorizado!!!"),
+			@ApiResponse(code = 500,message = "Erro interno no servidor"),
+			@ApiResponse(code = 401,message = "Acesso não Autorizado!!!")
+			
+	})
+	@ApiOperation(value = "Atualizar usuário")
 	@ResponseBody
 	@PutMapping(value = "/atualizar")	
 	ResponseEntity <?>atualizar(@RequestBody Usuario usuario){

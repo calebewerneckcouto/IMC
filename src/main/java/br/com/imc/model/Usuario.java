@@ -8,26 +8,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @SequenceGenerator(name = "seq_usuario", sequenceName = "seq_usuario", allocationSize = 1, initialValue = 1)
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+    @ApiModelProperty(value = "Código do usuário",dataType = "Long")
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
 	private Long id;
-
+    @ApiModelProperty(value = "Nome do usuário",dataType = "String")
 	private String nome;
-
+    @ApiModelProperty(value = "Idade do usuário",dataType = "Int")
 	private int idade;
-
+    @ApiModelProperty(value = "Altura do usuário",dataType = "String")
 	private String altura;
-
+    @ApiModelProperty(value = "Peso do usuário",dataType = "String")
 	private String peso;
-
+    @ApiModelProperty(value = "Resultado do IMC do usuário",dataType = "String")
 	private String resultadoIMC;
-
+    @ApiModelProperty(value = "Descricao do Resultado  do usuário",dataType = "String")
 	private String descricao;
 
 	
